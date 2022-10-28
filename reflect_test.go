@@ -387,6 +387,7 @@ func TestReflector_Reflect_pointer_envelop(t *testing.T) {
 	}
 
 	type NamedMap map[string]St
+
 	type NamedSlicePointers []*St
 
 	type Cont struct {
@@ -413,129 +414,129 @@ func TestReflector_Reflect_pointer_envelop(t *testing.T) {
 	require.NoError(t, err)
 
 	assertjson.Equal(t, []byte(`{
-        	            	 "definitions": {
-        	            	  "JsonschemaGoTestNamedMap": {
-        	            	   "additionalProperties": {
-        	            	    "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	   },
-        	            	   "type": "object"
-        	            	  },
-							  "JsonschemaGoTestNamedSlicePointers": {
-                              	"items": {
-									"type": "null",
-                                    "allOf": [
-                                     {
-                                      "$ref": "#/definitions/JsonschemaGoTestSt"
-                                     }
-                                    ]
-                                },
-                                "type": "array"
-							  },
-        	            	  "JsonschemaGoTestSt": {
-        	            	   "properties": {
-        	            	    "a": {
-        	            	     "type": "integer"
-        	            	    }
-        	            	    },
-        	            	   "type": "object"
-        	            	  }
-        	            	 },
-        	            	 "properties": {
-        	            	  "map": {
-        	            	   "minProperties": 2,
-        	            	   "additionalProperties": {
-        	            	    "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	   },
-        	            	   "type": [
-        	            	    "object",
-        	            	    "null"
-        	            	   ]
-        	            	  },
-        	            	  "mapOmitempty": {
-        	            	   "minProperties": 3,
-        	            	   "additionalProperties": {
-        	            	    "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	   },
-        	            	   "type": "object"
-        	            	  },
-        	            	  "namedMap": {
-        	            	   "minProperties": 5,
-        	            	   "anyOf": [
-        	            	    {
-        	            	     "type": "null"
-        	            	    },
-        	            	    {
-        	            	     "$ref": "#/definitions/JsonschemaGoTestNamedMap"
-        	            	    }
-        	            	   ]
-        	            	  },
-        	            	  "namedMapOmitempty": {
-        	            	   "$ref": "#/definitions/JsonschemaGoTestNamedMap",
-        	            	   "minProperties": 1
-        	            	  },
-        	            	  "ptr": {
-        	            	   "anyOf": [
-        	            	    {
-        	            	     "type": "null"
-        	            	    },
-        	            	    {
-        	            	     "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	    }
-        	            	   ]
-        	            	  },
-                              "namedSlicePointers": {
-                             	 "$ref": "#/definitions/JsonschemaGoTestNamedSlicePointers",
-                                 "minProperties": 5
-                              },
-        	            	  "ptrOmitempty": {
-        	            	   "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	  },
-        	            	  "slice": {
-        	            	   "items": {
-        	            	    "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	   },
-        	            	   "minItems": 2,
-        	            	   "type": "array"
-        	            	  },
-        	            	  "sliceOmitempty": {
-        	            	   "items": {
-        	            	    "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	   },
-        	            	   "minItems": 3,
-        	            	   "type": "array"
-        	            	  },
-							  "slicePointers": {
-                                "items": {
-                                  "allOf": [
-                                    {
-                                      "$ref": "#/definitions/JsonschemaGoTestSt"
-                                    }
-                                  ],
-                                  "type": "null"
-                                },
-                                "minItems": 5,
-                                "type": "array"
-                              },
-							  "pointerSlicePointer": {
-								"items": {
-                                   "allOf": [
-                                     {
-                                       "$ref": "#/definitions/JsonschemaGoTestSt"
-                                     }
-                                   ],
-                                   "type": "null"
-                                 },
-                                 "minItems": 2,
-                                 "type": [
-                                   "null",
-                                   "array"
-                                 ]
-                              },
-        	            	  "val": {
-        	            	   "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	  }
-        	            	 },
-        	            	 "type": "object"
+							 "definitions": {
+							   "JsonschemaGoTestNamedMap": {
+							     "additionalProperties": {
+							       "$ref": "#/definitions/JsonschemaGoTestSt"
+							     },
+							     "type": "object"
+							   },
+							   "JsonschemaGoTestNamedSlicePointers": {
+							     "items": {
+							       "type": "null",
+							       "allOf": [
+							         {
+							           "$ref": "#/definitions/JsonschemaGoTestSt"
+							         }
+							       ]
+							     },
+							     "type": "array"
+							   },
+							   "JsonschemaGoTestSt": {
+							     "properties": {
+							       "a": {
+							         "type": "integer"
+							       }
+							     },
+							     "type": "object"
+							   }
+							 },
+							 "properties": {
+							   "map": {
+							     "minProperties": 2,
+							     "additionalProperties": {
+							       "$ref": "#/definitions/JsonschemaGoTestSt"
+							     },
+							     "type": [
+							       "object",
+							       "null"
+							     ]
+							   },
+							   "mapOmitempty": {
+							     "minProperties": 3,
+							     "additionalProperties": {
+							       "$ref": "#/definitions/JsonschemaGoTestSt"
+							     },
+							     "type": "object"
+							   },
+							   "namedMap": {
+							     "minProperties": 5,
+							     "anyOf": [
+							       {
+							         "type": "null"
+							       },
+							       {
+							         "$ref": "#/definitions/JsonschemaGoTestNamedMap"
+							       }
+							     ]
+							   },
+							   "namedMapOmitempty": {
+							     "$ref": "#/definitions/JsonschemaGoTestNamedMap",
+							     "minProperties": 1
+							   },
+							   "ptr": {
+							     "anyOf": [
+							       {
+							         "type": "null"
+							       },
+							       {
+							         "$ref": "#/definitions/JsonschemaGoTestSt"
+							       }
+							     ]
+							   },
+							   "namedSlicePointers": {
+							     "$ref": "#/definitions/JsonschemaGoTestNamedSlicePointers",
+							     "minProperties": 5
+							   },
+							   "ptrOmitempty": {
+							     "$ref": "#/definitions/JsonschemaGoTestSt"
+							   },
+							   "slice": {
+							     "items": {
+							       "$ref": "#/definitions/JsonschemaGoTestSt"
+							     },
+							     "minItems": 2,
+							     "type": "array"
+							   },
+							   "sliceOmitempty": {
+							     "items": {
+							       "$ref": "#/definitions/JsonschemaGoTestSt"
+							     },
+							     "minItems": 3,
+							     "type": "array"
+							   },
+							   "slicePointers": {
+							     "items": {
+							       "allOf": [
+							         {
+							           "$ref": "#/definitions/JsonschemaGoTestSt"
+							         }
+							       ],
+							       "type": "null"
+							     },
+							     "minItems": 5,
+							     "type": "array"
+							   },
+							   "pointerSlicePointer": {
+							     "items": {
+							       "allOf": [
+							         {
+							           "$ref": "#/definitions/JsonschemaGoTestSt"
+							         }
+							       ],
+							       "type": "null"
+							     },
+							     "minItems": 2,
+							     "type": [
+							       "null",
+							       "array"
+							     ]
+							   },
+							   "val": {
+							     "$ref": "#/definitions/JsonschemaGoTestSt"
+							   }
+							 },
+							 "type": "object"
         	            	}`), j, string(j))
 }
 
@@ -545,6 +546,7 @@ func TestReflector_Reflect_pointer(t *testing.T) {
 	}
 
 	type NamedMap map[string]St
+
 	type NamedSlicePointers []*St
 
 	type Cont struct {
@@ -569,121 +571,121 @@ func TestReflector_Reflect_pointer(t *testing.T) {
 	require.NoError(t, err)
 
 	assertjson.Equal(t, []byte(`{
-        	            	 "definitions": {
-        	            	  "JsonschemaGoTestNamedMap": {
-        	            	   "additionalProperties": {
-        	            	    "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	   },
-        	            	   "type": [
-        	            	    "object",
-        	            	    "null"
-        	            	   ]
-        	            	  },
-        	            	  "JsonschemaGoTestSt": {
-        	            	   "properties": {
-        	            	    "a": {
-        	            	     "type": "integer"
-        	            	    }
-        	            	   },
-        	            	   "type": [
-        	            	    "object",
-        	            	    "null"
-        	            	   ]
-        	            	  },
-							  "JsonschemaGoTestNamedSlicePointers": {
-							  	"items": {
-								  "allOf": [
-							  		{
-							  			"$ref": "#/definitions/JsonschemaGoTestSt"
-							  		}
-							  		],
-							  		"type": "null"
-							  	},
-							  	"type": "array"
-							   }
-        	            	 },
-        	            	 "properties": {
-        	            	  "map": {
-        	            	   "minProperties": 2,
-        	            	   "additionalProperties": {
-        	            	    "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	   },
-        	            	   "type": [
-        	            	    "object",
-        	            	    "null"
-        	            	   ]
-        	            	  },
-        	            	  "mapOmitempty": {
-        	            	   "minProperties": 3,
-        	            	   "additionalProperties": {
-        	            	    "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	   },
-        	            	   "type": "object"
-        	            	  },
-        	            	  "namedMap": {
-        	            	   "$ref": "#/definitions/JsonschemaGoTestNamedMap",
-        	            	   "minProperties": 5
-        	            	  },
-        	            	  "namedMapOmitempty": {
-        	            	   "$ref": "#/definitions/JsonschemaGoTestNamedMap",
-        	            	   "minProperties": 1
-        	            	  },
-                              "namedSlicePointers": {
-                                "$ref": "#/definitions/JsonschemaGoTestNamedSlicePointers",
-                                "minProperties": 5
-                              },
-        	            	  "ptr": {
-        	            	   "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	  },
-        	            	  "ptrOmitempty": {
-        	            	   "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	  },
-        	            	  "slice": {
-        	            	   "items": {
-        	            	    "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	   },
-        	            	   "minItems": 2,
-        	            	   "type": "array"
-        	            	  },
-        	            	  "sliceOmitempty": {
-        	            	   "items": {
-        	            	    "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	   },
-        	            	   "minItems": 3,
-        	            	   "type": "array"
-        	            	  },
-    						  "slicePointers": {
-                              	 "items": {
-                                 	"allOf": [
-                                   	{
-									  "$ref": "#/definitions/JsonschemaGoTestSt"
-                                   	}
-                                 ],
-                                 "type": "null"
-                               },
-                               "minItems": 5,
-                               "type": "array"
-                              },
- 						      "pointerSlicePointer": {
- 	                             "items": {
-    	                            "allOf": [
-                                    {
-                                      "$ref": "#/definitions/JsonschemaGoTestSt"
-                                    }
-                                  	],
-                                  "type": "null"
-                                 },
-                                 "minItems": 2,
-                                 "type": [
-                                   "null",
-                                   "array"
-                                 ]
-                              },
-        	            	  "val": {
-        	            	   "$ref": "#/definitions/JsonschemaGoTestSt"
-        	            	  }
-        	            	 },
-        	            	 "type": "object"
+  							 "definitions": {
+  							   "JsonschemaGoTestNamedMap": {
+  							     "additionalProperties": {
+  							       "$ref": "#/definitions/JsonschemaGoTestSt"
+  							     },
+  							     "type": [
+  							       "object",
+  							       "null"
+  							     ]
+  							   },
+  							   "JsonschemaGoTestSt": {
+  							     "properties": {
+  							       "a": {
+  							         "type": "integer"
+  							       }
+  							     },
+  							     "type": [
+  							       "object",
+  							       "null"
+  							     ]
+  							   },
+  							   "JsonschemaGoTestNamedSlicePointers": {
+  							     "items": {
+  							       "allOf": [
+  							         {
+  							           "$ref": "#/definitions/JsonschemaGoTestSt"
+  							         }
+  							       ],
+  							       "type": "null"
+  							     },
+  							     "type": "array"
+  							   }
+  							 },
+  							 "properties": {
+  							   "map": {
+  							     "minProperties": 2,
+  							     "additionalProperties": {
+  							       "$ref": "#/definitions/JsonschemaGoTestSt"
+  							     },
+  							     "type": [
+  							       "object",
+  							       "null"
+  							     ]
+  							   },
+  							   "mapOmitempty": {
+  							     "minProperties": 3,
+  							     "additionalProperties": {
+  							       "$ref": "#/definitions/JsonschemaGoTestSt"
+  							     },
+  							     "type": "object"
+  							   },
+  							   "namedMap": {
+  							     "$ref": "#/definitions/JsonschemaGoTestNamedMap",
+  							     "minProperties": 5
+  							   },
+  							   "namedMapOmitempty": {
+  							     "$ref": "#/definitions/JsonschemaGoTestNamedMap",
+  							     "minProperties": 1
+  							   },
+  							   "namedSlicePointers": {
+  							     "$ref": "#/definitions/JsonschemaGoTestNamedSlicePointers",
+  							     "minProperties": 5
+  							   },
+  							   "ptr": {
+  							     "$ref": "#/definitions/JsonschemaGoTestSt"
+  							   },
+  							   "ptrOmitempty": {
+  							     "$ref": "#/definitions/JsonschemaGoTestSt"
+  							   },
+  							   "slice": {
+  							     "items": {
+  							       "$ref": "#/definitions/JsonschemaGoTestSt"
+  							     },
+  							     "minItems": 2,
+  							     "type": "array"
+  							   },
+  							   "sliceOmitempty": {
+  							     "items": {
+  							       "$ref": "#/definitions/JsonschemaGoTestSt"
+  							     },
+  							     "minItems": 3,
+  							     "type": "array"
+  							   },
+  							   "slicePointers": {
+  							     "items": {
+  							       "allOf": [
+  							         {
+  							           "$ref": "#/definitions/JsonschemaGoTestSt"
+  							         }
+  							       ],
+  							       "type": "null"
+  							     },
+  							     "minItems": 5,
+  							     "type": "array"
+  							   },
+  							   "pointerSlicePointer": {
+  							     "items": {
+  							       "allOf": [
+  							         {
+  							           "$ref": "#/definitions/JsonschemaGoTestSt"
+  							         }
+  							       ],
+  							       "type": "null"
+  							     },
+  							     "minItems": 2,
+  							     "type": [
+  							       "null",
+  							       "array"
+  							     ]
+  							   },
+  							   "val": {
+  							     "$ref": "#/definitions/JsonschemaGoTestSt"
+  							   }
+  							 },
+  							 "type": "object"
         	            	}`), j, string(j))
 }
 

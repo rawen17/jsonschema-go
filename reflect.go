@@ -656,6 +656,7 @@ func (r *Reflector) kindSwitch(t reflect.Type, v reflect.Value, schema *Schema, 
 					item.ToSchemaOrBool(),
 				}
 			}
+
 			itemsSchema.AddType(Null)
 		}
 
